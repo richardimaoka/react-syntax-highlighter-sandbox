@@ -1,16 +1,23 @@
+"use client";
+
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { promises as fs } from "fs";
+import styles from "./Component.module.css";
 
-export const Component = async () => {
-  const codeString = await fs.readFile(
-    process.cwd() + "/app/components/source-code",
-    "utf8"
-  );
+interface Props {
+  codeString: string;
+}
 
+export const Component = (props: Props) => {
   return (
-    <SyntaxHighlighter language="javascript" style={docco}>
-      {codeString}
+    <SyntaxHighlighter
+      language="javascript"
+      style={docco}
+      wrapLines
+      className={styles.component}
+      onClick={onclick}
+    >
+      {props.codeString}
     </SyntaxHighlighter>
   );
 };

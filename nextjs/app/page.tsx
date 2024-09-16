@@ -1,10 +1,10 @@
-import { Component } from "./components/Component";
+import { Container } from "./components/Container";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <Component />
+      <Container />
     </div>
   );
 }

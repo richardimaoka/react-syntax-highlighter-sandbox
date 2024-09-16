@@ -1,0 +1,16 @@
+.component {
+  background-color: blue;
+}
+
+.component > code > span {
+  position: relative;
+}
+
+.component > code > span::before {
+  display: inline-block;
+  position: absolute;
+
+  content: " ";
+  background-color: rgba(116, 170, 170, 0.5);
+  width: 100px;
+}
