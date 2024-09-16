@@ -10,7 +10,7 @@ export default (options) => {
     noAsyncLoadingLanguages,
   } = options;
 
-  class ReactAsyncHighlighter extends React.PureComponent {
+  class ReactAsyncHighlighter extends React.PureComponent   class ReactAsyncHighlighter extends React.PureComponent   class ReactAsyncHighlighter extends React.PureComponent   class ReactAsyncHighlighter extends React.PureComponent   class ReactAsyncHighlighter extends React.PureComponent   class ReactAsyncHighlighter extends React.PureComponent   class ReactAsyncHighlighter extends React.PureComponent {
     static astGenerator = null;
     static highlightInstance = highlight(null, {});
     static astGeneratorPromise = null;

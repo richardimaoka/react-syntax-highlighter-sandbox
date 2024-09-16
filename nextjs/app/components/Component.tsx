@@ -10,14 +10,29 @@ interface Props {
 
 export const Component = (props: Props) => {
   return (
-    <SyntaxHighlighter
-      language="javascript"
-      style={docco}
-      wrapLines
-      className={styles.component}
-      onClick={onclick}
+    <div
+      onMouseDown={(e) => {
+        if (e.target instanceof Element) {
+          const label = e.target.getAttribute("data-copy-start");
+          console.log(label, typeof label);
+        }
+      }}
     >
-      {props.codeString}
-    </SyntaxHighlighter>
+      <SyntaxHighlighter
+        language="javascript"
+        style={docco}
+        wrapLines
+        wrapLongLines
+        className={styles.component}
+        // @ts-expect-error using data attribute
+        lineProps={() => {
+          return {
+            "data-copy-start": 1,
+          };
+        }}
+      >
+        {props.codeString}
+      </SyntaxHighlighter>
+    </div>
   );
 };
