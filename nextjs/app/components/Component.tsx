@@ -9,26 +9,48 @@ interface Props {
 }
 
 export const Component = (props: Props) => {
+  const highlights = [
+    { start: 2, end: 3 },
+    { start: 6, end: 8 },
+  ];
+
   return (
     <div
       onMouseDown={(e) => {
         if (e.target instanceof Element) {
-          const label = e.target.getAttribute("data-copy-start");
-          console.log(label, typeof label);
+          const start = e.target.getAttribute("data-highlight-start");
+          const end = e.target.getAttribute("data-highlight-end");
+          if (
+            typeof Number(start) === "number" &&
+            typeof Number(end) === "number"
+          ) {
+            console.log(`start = ${start} end = ${end}`);
+          }
         }
       }}
     >
       <SyntaxHighlighter
         language="javascript"
         style={docco}
+        showLineNumbers // necessary for lineProps to accept (argument: number)
         wrapLines
-        wrapLongLines
+        // wrapLongLines
         className={styles.component}
-        // @ts-expect-error using data attribute
-        lineProps={() => {
-          return {
-            "data-copy-start": 1,
-          };
+        lineProps={(lineNumber) => {
+          const hFound = highlights.find(
+            (h) => h.start <= lineNumber && lineNumber <= h.end
+          );
+
+          if (hFound) {
+            return {
+              style: { backgroundColor: "yellow" },
+              "data-highlight-start": hFound.start,
+              "data-highlight-end": hFound.end,
+              // className: "abcde", className is forcefully canceled inside React Syntax Highlighter's lineProps processing
+            };
+          } else {
+            return {};
+          }
         }}
       >
         {props.codeString}

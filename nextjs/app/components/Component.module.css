@@ -4,7 +4,11 @@
 
 .component > code > span {
   display: block;
+}
+
+/* .component > code > span {
+  display: block;
   position: relative;
   z-index: 1;
   background-color: rgb(236, 236, 214);
-}
+} */
